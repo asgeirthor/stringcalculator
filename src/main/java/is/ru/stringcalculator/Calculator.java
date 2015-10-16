@@ -17,8 +17,17 @@ public class Calculator {
 
 	private static String[] splitNumbers(String numbers){
 	    	if(numbers.charAt(0) == '/' && numbers.charAt(1) == '/'){
-			String newNumbers = numbers.substring(4, numbers.length());
-			return newNumbers.split("(\\\n)|" + String.format("(%c)", numbers.charAt(2)));
+			if(numbers.indexOf('[') != -1){
+				int indexOfClosingBracket;
+				indexOfClosingBracket = numbers.indexOf("]");
+				String deliminator = numbers.substring(3, indexOfClosingBracket);
+				String newNumbers = numbers.substring(indexOfClosingBracket +2, numbers.length());
+				return newNumbers.split("(\\\n)|(\\*\\*\\*)");
+			}
+			else{
+				String newNumbers = numbers.substring(4, numbers.length());
+	                        return newNumbers.split("(\\\n)|" + String.format("(%c)", numbers.charAt(2)));
+			}
 		} 
 		return numbers.split("(,)|(\\\n)");
 	}
