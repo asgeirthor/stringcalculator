@@ -31,6 +31,9 @@ public class Calculator {
 			if(num < 0){
 				message += number + ",";
 			}
+			else if(num > 1000){
+				continue;
+			}
 			else{
 				total += num;
 			}
