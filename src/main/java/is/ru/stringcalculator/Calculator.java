@@ -25,12 +25,18 @@ public class Calculator {
       
 	private static int sum(String[] numbers){
  		int total = 0;
+		String message = "Negatives not allowed: ";
         	for(String number : numbers){
 			int num = toInt(number);
 			if(num < 0){
-				throw new IllegalArgumentException("Negatives not allowed: " + number);
+				message += number + ",";
 			}
-			total += num;
+			else{
+				total += num;
+			}
+		}
+		if(message.length() > 23){
+			throw new IllegalArgumentException(message.substring(0, message.length() -1));
 		}
 		return total;
     }
