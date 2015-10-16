@@ -21,8 +21,14 @@ public class Calculator {
 				int indexOfClosingBracket;
 				indexOfClosingBracket = numbers.indexOf("]");
 				String deliminator = numbers.substring(3, indexOfClosingBracket);
+				StringBuilder delim = new StringBuilder("");
+				CharSequence escapeChars = "\\";
+				for(int i = 0; i < deliminator.length(); i++){
+					delim.append(escapeChars);
+					delim.append(deliminator.charAt(i));
+				}
 				String newNumbers = numbers.substring(indexOfClosingBracket +2, numbers.length());
-				return newNumbers.split("(\\\n)|(\\*\\*\\*)");
+				return newNumbers.split("(\\\n)|" + String.format("(%s)", delim));
 			}
 			else{
 				String newNumbers = numbers.substring(4, numbers.length());
