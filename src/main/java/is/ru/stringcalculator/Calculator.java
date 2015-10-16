@@ -30,7 +30,7 @@ public class Calculator {
 			if(num < 0){
 				throw new IllegalArgumentException("Negatives not allowed: " + number);
 			}
-			total += toInt(number);
+			total += num;
 		}
 		return total;
     }
