@@ -1,13 +1,16 @@
 package is.ru.stringcalculator;
 
 import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.*;
 import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class CalculatorTest {
 
 	public static void main(String args[]) {
-      org.junit.runner.JUnitCore.main("is.ru.stringcalculator.CalculatorTest");
-    }
+      		org.junit.runner.JUnitCore.main("is.ru.stringcalculator.CalculatorTest");
+    	}
 
 	@Test
 	public void testEmptyString() {
@@ -22,7 +25,7 @@ public class CalculatorTest {
 	@Test
 	public void testTwoNumbers() {
 		assertEquals(3, Calculator.add("1,2"));
-	}	
+	}
 
 	@Test
   	public void testMultipleNumbers(){
@@ -44,9 +47,14 @@ public class CalculatorTest {
 		assertEquals(3, Calculator.add("//;\n1;2"));
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Rule
+        public ExpectedException e = ExpectedException.none();
+
+	@Test
 	public void testNegitiveNumbers(){
-		assertEquals(0, Calculator.add("1,-1"));
+		e.expect(IllegalArgumentException.class);
+		e.expectMessage("Negatives not allowed: -1");
+		Calculator.add("1,-1");
 	}
 
 }
