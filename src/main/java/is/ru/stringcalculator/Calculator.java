@@ -23,10 +23,14 @@ public class Calculator {
 		return numbers.split("(,)|(\\\n)");
 	}
       
-    private static int sum(String[] numbers){
- 	    int total = 0;
-        for(String number : numbers){
-		    total += toInt(number);
+	private static int sum(String[] numbers){
+ 		int total = 0;
+        	for(String number : numbers){
+			int num = toInt(number);
+			if(num < 0){
+				throw new IllegalArgumentException("Negatives not allowed: " + number);
+			}
+			total += toInt(number);
 		}
 		return total;
     }

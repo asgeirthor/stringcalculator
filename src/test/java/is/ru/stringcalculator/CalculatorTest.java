@@ -42,5 +42,11 @@ public class CalculatorTest {
 	@Test
 	public void testCustomDeliminator(){
 		assertEquals(3, Calculator.add("//;\n1;2"));
-	} 
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testNegitiveNumbers(){
+		assertEquals(0, Calculator.add("1,-1"));
+	}
+
 }
