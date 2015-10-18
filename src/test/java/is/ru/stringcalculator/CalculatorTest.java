@@ -78,4 +78,10 @@ public class CalculatorTest {
 	public void testDeliminatorLength2(){
 		assertEquals(6, Calculator.add("//[$$$$]\n2$$$$1$$$$3"));
 	}
+
+	@Test
+	public void testMultibleCustomDelimiters(){
+		assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+	}
 }
+
